@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Site GitHub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+     <header>
+    <div class="logo" onclick="goHome()">ALICE AUGER</div>
+    <nav>
+      <a href="#">PROJETS</a>
+      <a href="#">SERVICES</a>
+      <a href="#">CONTACT</a>
+    </nav>
+  </header>
+
+  <!-- PAGE PRINCIPALE -->
+  <div class="container" id="main-container">
+    <div class="column" id="left-col">
+      <div class="image-box" data-project="proj1"><img src="img/client-logo(1).webp" alt="Projet 1"></div>
+      <div class="image-box" data-project="proj2"><img src="img/client-illu(1).webp" alt="Projet 2"></div>
+      <div class="image-box" data-project="proj3"><img src="img/client-logo(1).webp" alt="Projet 3"></div>
+      <div class="image-box" data-project="proj4"><img src="img/jaaj4.webp" alt="Projet 4"></div>
+    </div>
+    <div class="column" id="right-col">
+      <div class="image-box" data-project="proj5"><img src="img/jaaj4.webp" alt="Projet 5"></div>
+      <div class="image-box" data-project="proj6"><img src="img/anim-baton(1).webp" alt="Projet 6"></div>
+      <div class="image-box" data-project="proj7"><img src="img/client-logo(3).webp" alt="Projet 7"></div>
+      <div class="image-box" data-project="proj8"><img src="img/client-illu(4).webp" alt="Projet 8"></div>
+    </div>
+  </div>
+
+  <!-- PAGE PROJET -->
+  <div id="project-container">
+    <div class="project-subheader">
+      <div class="project-filters">
+        <button>GRAVURE /</button>
+        <button>ANIMATION /</button>
+        <button>CALLIGRAPHIE</button>
+      </div>
+      <div class="project-info">
+        <span id="project-subtitle">Description courte du projet</span>
+      </div>
+    </div>
+
+    <div id="project-content">
+      <h2 id="project-title">Titre Projet</h2>
+      <p id="project-desc">Description du projet...</p>
+      <div id="project-images"></div>
+    </div>
+  </div><script src="script.js"></script></body>
