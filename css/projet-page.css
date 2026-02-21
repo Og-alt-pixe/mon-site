@@ -1,0 +1,286 @@
+
+.progress-bar {
+    position: fixed;
+    top: 69px; /* Un pixel de moins que ton header (70px) pour être pile sur la bordure */
+    left: 0;
+    width: 0%; /* Le JS va changer ça */
+    height: 5px; /* On l'épaissit un peu pour tester */
+    background-color: var(--text-color) !important; /* Ta couleur beige */
+    z-index: 9999; /* Au-dessus de ABSOLUMENT tout */
+}
+
+/* ==========================================================================
+   1. SECTION HERO
+   ========================================================================== */
+
+
+.project-hero{
+       font-family: var(--font-sans);
+       position: relative;
+}
+
+.project-title-area{
+    font-family: var(--font-sans);
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.4fr 0.6fr;
+    padding-bottom: 40px;
+
+}
+.project-title{
+    width: 100%;
+
+   
+}
+.project-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 50px;
+
+            
+}/* État initial : décalé et invisible */
+.reveal-right {
+    opacity: 0;
+    transform: translateX(30px);
+transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: 0.3s;
+    pointer-events: none; /* Évite les bugs de clic pendant l'animation */
+}
+
+/* État activé par le JS au scroll */
+.reveal-right.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+.project-details span{
+        font-family: var(--font-sans);
+          
+        font-style: normal;   
+          letter-spacing: 2px;  
+        
+}
+.meta-label{
+ font-size: var(--proj-meta);  
+    color: #666;
+    font-weight: 600;
+      text-transform: uppercase; 
+            
+}
+.meta-value{
+    font-weight: 400;
+margin-bottom: 30px;   
+       font-size: clamp(0.9rem, 3vw, 1.1rem);
+              text-transform: lowercase; 
+}
+.name-project{
+color: var( --text-color);
+       font-weight: 700;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+letter-spacing: -0.05;
+    line-height: 0.88;
+   padding-top: 6px;
+
+}
+.description-text{
+width: 70%; 
+font-family: var(--font-serif);
+     padding-top: 40px;
+          padding-bottom: 80px;
+font-style: italic;
+   font-size: var(--fs-h2);
+       letter-spacing: 1px;
+         text-transform: lowercase; 
+         line-height:1.5;
+
+}
+.description-text p{
+width: 98%;
+
+     font-weight: 300;
+}
+
+/* Cible l'image à l'intérieur du masque dans ta grille projet */
+.project-grid .reveal-mask img {
+    opacity: 0;
+    transform: translateY(40px); /* Même montée que sur l'index */
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Quand le masque devient visible au scroll */
+.project-grid .reveal-mask.is-visible img {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* Container de grille */
+.project-grid {
+    padding: 20px var(--side-pad);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Petit gap pour coller à ton style serré */
+}
+
+/* Image pleine largeur */
+.img-full.reveal-mask {
+    width: 100%;
+    overflow: hidden; /* Important pour masquer le départ de l'image */
+}
+
+.img-full img {
+    width: 100%;
+    height: auto;
+    display: block; /* Supprime l'espace blanc sous l'image */
+}
+
+/* Grilles 2 et 3 colonnes */
+.img-grid-2, .img-grid-3 {
+    display: grid;
+    gap: 10px;
+}
+
+.img-grid-2 { grid-template-columns: 1.2fr 0.8fr; }
+.img-grid-3 { grid-template-columns: 0.8fr 1.2fr; }
+
+/* Force les images des grilles à avoir la même hauteur sur une ligne */
+.img-grid-2 .reveal-mask, .img-grid-3 .reveal-mask {
+    height: 60vh; /* Ajuste selon tes préférences */
+}
+
+.img-grid-2 img, .img-grid-3 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ==========================================================================
+   4. RESPONSIVE (MOBILE)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    /* On réduit l'espace global sur les côtés */
+    .project-grid {
+        padding: 10px var(--side-pad);
+        gap: 15px; /* Un peu plus d'espace entre les blocs verticaux */
+    }
+
+    /* On force les grilles 2 et 3 colonnes à devenir une seule colonne */
+    .img-grid-2, 
+    .img-grid-3 {
+        grid-template-columns: 1fr !important;
+        gap: 15px;
+    }
+
+    /* On ajuste la hauteur des images sur mobile */
+    .img-grid-2 .reveal-mask, 
+    .img-grid-3 .reveal-mask {
+        height: 45vh; /* Hauteur confortable pour le scroll mobile */
+    }
+
+    /* Optionnel : Ajustement du texte du Hero sur mobile */
+.meta-value {
+  margin-bottom: 14px;  
+}
+
+    .project-details {
+        padding-left: 0; /* On enlève la marge de gauche pour l'aligner au texte */
+        gap: 5px;
+    }
+}
+@media (max-width: 500px) {
+    .project-title-area {
+        grid-template-columns: 1fr; /* Le titre et les détails s'empilent */
+        gap: 30px;
+    }
+
+    .project-details {
+        padding-left: 0; /* On enlève la marge de gauche pour l'aligner au texte */
+    }
+
+    .description-text {
+        width: 100%; /* La description prend toute la largeur */
+        padding-bottom: 40px;
+    }
+ }
+.project-footer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+padding: 50px var(--side-pad);
+}
+.back-btn {
+    position: absolute; /* Il se place par rapport au début de la page */
+    top: 100px; /* Juste sous le header */
+    left: var(--side-pad);
+    font-family: var(--font-sans);
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.747);
+    transition: all 0.4s ease;
+    z-index: 10;
+
+}
+
+.back-btn:hover {
+    color: var(--text-color);
+    transform: translateX(-5px); /* Petit mouvement vers la gauche */
+}
+
+.back-btn .arrow {
+    margin-right: 8px;
+}
+
+.project-footer-nav {
+    padding: 80px var(--side-pad) ;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre le bouton NEXT */
+}
+
+.nav-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre tout en bas de page */
+
+    margin-top: 60px;
+    width: 100%;
+
+}
+
+/* Style du lien Projet Suivant */
+
+.next-project-link span{
+    font-family: var(--font-serif);
+    letter-spacing: 1px;
+        font-size: 13px;
+   margin-left: 8px;
+    transition: margin 0.4s ease;
+}
+.next-title {
+    font-size: var(--fs-h2);
+    font-family: var(--font-sans);
+    color: var(--white);
+   transition: all 0.4s ease;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 500;
+}
+
+.next-project-link {
+    text-align: center;
+    text-decoration: none;
+    transition: transform 0.4s ease; /* Ajoute la transition ici */
+    display: block;
+}
+
+.next-project-link:hover  {
+    transform: translateX(5px); /* Glisse l'ensemble vers la droite */
+}
+
+.next-project-link:hover .next-title {
+    color: var(--text-color);
+    
+}
+
